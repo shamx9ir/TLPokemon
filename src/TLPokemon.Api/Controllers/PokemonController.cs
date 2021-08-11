@@ -7,9 +7,20 @@ using System.Threading.Tasks;
 
 namespace TLPokemon.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class PokemonController : ControllerBase
     {
+        [HttpGet("{name}")]
+        public IActionResult Get(string name)
+        {
+            return Ok();
+        }
+
+        [HttpGet("translated/{name}")]
+        public IActionResult GetTranslated(string name)
+        {
+            return Ok();
+        }
     }
 }
