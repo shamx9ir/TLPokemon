@@ -10,7 +10,7 @@ namespace TLPokemon.Api.Services.Pokemon
     {
         public PokemonBase Get<T>(string name) where T : PokemonBase
         {
-            throw new NotImplementedException();
+            return new Models.Pokemon("pikachu", "buzzing mouse", "tube", false);
         }
     }
 }

@@ -7,5 +7,12 @@ namespace TLPokemon.Api.Models
 {
     public class Pokemon : PokemonBase
     {
+        public Pokemon(string name, string description, string habitat, bool isLegendary)
+            : base(name, description, habitat, isLegendary)
+        {
+
+        }
+
+        public override string Description => OriginalDescription;
     }
 }
