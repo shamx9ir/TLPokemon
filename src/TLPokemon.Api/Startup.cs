@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TLPokemon.Api.Models;
+using TLPokemon.Api.Services.Network;
 using TLPokemon.Api.Services.Pokemon;
 
 namespace TLPokemon.Api
@@ -30,6 +31,7 @@ namespace TLPokemon.Api
         {
             services.AddControllers();
             services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddHttpClient();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TLPokemon.Api", Version = "v1" });
@@ -39,6 +41,8 @@ namespace TLPokemon.Api
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterType<PokemonService>().As<IPokemonService>();
+            builder.RegisterType<NetworkService>().As<INetworkService>();
+            builder.RegisterType<Pokemon>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
