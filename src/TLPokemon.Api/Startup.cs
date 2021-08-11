@@ -1,3 +1,4 @@
+using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TLPokemon.Api.Models;
+using TLPokemon.Api.Services.Pokemon;
 
 namespace TLPokemon.Api
 {
@@ -23,7 +26,6 @@ namespace TLPokemon.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -34,7 +36,11 @@ namespace TLPokemon.Api
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterType<PokemonService>().As<IPokemonService>();
+        }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
