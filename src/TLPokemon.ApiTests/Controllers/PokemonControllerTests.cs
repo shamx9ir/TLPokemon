@@ -47,7 +47,7 @@ namespace TLPokemon.Api.Controllers.Tests
         /// The controller invoked IPokemonService.Get<TranslatedPokemon>
         /// </summary>
         [TestMethod()]
-        public void Get_Calls_PokemonServiceGet_WithTranslatedPokemonType()
+        public void GetTranslated_Calls_PokemonServiceGet_WithTranslatedPokemonType()
         {
             var lifetimeScopeMock = new Mock<ILifetimeScope>();
             var networkServiceMock = new Mock<INetworkService>();
