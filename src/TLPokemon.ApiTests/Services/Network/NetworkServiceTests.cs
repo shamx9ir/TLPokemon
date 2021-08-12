@@ -20,7 +20,7 @@ namespace TLPokemon.Api.Services.Network.Tests
     public class NetworkServiceTests
     {
         /// <summary>
-        /// 
+        /// GetJsonString returns json string
         /// </summary>
         [TestMethod()]
         public async Task GetJsonStringTest()
