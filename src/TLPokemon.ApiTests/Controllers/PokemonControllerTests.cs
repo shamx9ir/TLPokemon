@@ -24,10 +24,7 @@ namespace TLPokemon.Api.Controllers.Tests
         [TestMethod()]
         public void Get_Calls_PokemonServiceGet_WithPokemonType()
         {
-            var lifetimeScopeMock = new Mock<ILifetimeScope>();
-            var networkServiceMock = new Mock<INetworkService>();
-
-            var pokemonServiceMock = new Mock<PokemonService>(lifetimeScopeMock.Object, networkServiceMock.Object);
+            var pokemonServiceMock = new Mock<IPokemonService>();
             pokemonServiceMock.Setup(m => m.Get<Pokemon>(It.IsAny<string>())).Returns(new Pokemon("mewtwo", "description", "habitat", true));
 
             using (var mock = AutoMock.GetLoose(builder =>
@@ -49,10 +46,7 @@ namespace TLPokemon.Api.Controllers.Tests
         [TestMethod()]
         public void GetTranslated_Calls_PokemonServiceGet_WithTranslatedPokemonType()
         {
-            var lifetimeScopeMock = new Mock<ILifetimeScope>();
-            var networkServiceMock = new Mock<INetworkService>();
-
-            var pokemonServiceMock = new Mock<PokemonService>(lifetimeScopeMock.Object, networkServiceMock.Object);
+            var pokemonServiceMock = new Mock<IPokemonService>();
             pokemonServiceMock.Setup(m => m.Get<TranslatedPokemon>(It.IsAny<string>())).Returns(new TranslatedPokemon("mewtwo", "description", "habitat", true));
 
             using (var mock = AutoMock.GetLoose(builder =>

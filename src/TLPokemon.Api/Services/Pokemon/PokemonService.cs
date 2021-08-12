@@ -22,7 +22,7 @@ namespace TLPokemon.Api.Services.Pokemon
             this.lifetimeScope = lifetimeScope;
         }
 
-        public virtual PokemonBase Get<T>(string name) where T : PokemonBase
+        public PokemonBase Get<T>(string name) where T : PokemonBase
         {
             var url = $"{apiEndpoint}{name}";
             var jsonString = networkService.GetJsonString(url).Result;
