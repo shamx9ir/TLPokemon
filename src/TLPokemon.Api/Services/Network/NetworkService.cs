@@ -22,5 +22,14 @@ namespace TLPokemon.Api.Services.Network
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
+
+        public async Task<string> PostJsonString(string url, HttpContent content)
+        {
+            var client = httpClientFactory.CreateClient();
+            var response = await client.PostAsync(url, content);
+
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
+        }
     }
 }

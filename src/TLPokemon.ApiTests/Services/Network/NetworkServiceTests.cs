@@ -53,5 +53,36 @@ namespace TLPokemon.Api.Services.Network.Tests
             }
 
         }
+
+        [TestMethod()]
+        public async Task PostJsonStringTest()
+        {
+            var url = "https://truelayer.com/";
+            var jsonString = "{ status: 'success' }";
+            var jsonStringUnicoded = "\"{ status: \\u0027success\\u0027 }\"";
+
+            var jsonContent = JsonContent.Create(jsonString);
+
+            var httpMessageHandlerMock = new Mock<HttpMessageHandler>();
+            httpMessageHandlerMock.Protected()
+                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(new HttpResponseMessage { StatusCode = HttpStatusCode.OK, Content = jsonContent });
+
+            var client = new HttpClient(httpMessageHandlerMock.Object);
+
+            var httpClientFactoryMock = new Mock<IHttpClientFactory>();
+            httpClientFactoryMock.Setup(m => m.CreateClient(It.IsAny<string>())).Returns(client);
+
+            using (var mock = AutoMock.GetLoose(builder =>
+            {
+                builder.RegisterInstance(httpClientFactoryMock.Object).As<IHttpClientFactory>();
+            }))
+            {
+                var networkService = mock.Create<NetworkService>();
+                var result = await networkService.PostJsonString(url, new StringContent(""));
+
+                Assert.AreEqual(jsonStringUnicoded, result);
+            }
+        }
     }
 }
