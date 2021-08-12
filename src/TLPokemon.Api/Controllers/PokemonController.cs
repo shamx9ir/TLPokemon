@@ -28,7 +28,7 @@ namespace TLPokemon.Api.Controllers
         [HttpGet("translated/{name}")]
         public IActionResult GetTranslated(string name)
         {
-            return Ok();
+            return Ok(pokemonService.Get<TranslatedPokemon>(name));
         }
     }
 }
