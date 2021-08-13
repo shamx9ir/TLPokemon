@@ -25,8 +25,6 @@ namespace TLPokemon.Api.Controllers.Tests
         public void Get_Calls_PokemonServiceGet_WithPokemonType()
         {
             var pokemonServiceMock = new Mock<IPokemonService>();
-            pokemonServiceMock.Setup(m => m.Get<Pokemon>(It.IsAny<string>())).Returns(new Pokemon("mewtwo", "description", "habitat", true));
-
             using (var mock = AutoMock.GetLoose(builder =>
             {
                 builder.RegisterInstance(pokemonServiceMock.Object).As<IPokemonService>();
@@ -47,8 +45,6 @@ namespace TLPokemon.Api.Controllers.Tests
         public void GetTranslated_Calls_PokemonServiceGet_WithTranslatedPokemonType()
         {
             var pokemonServiceMock = new Mock<IPokemonService>();
-            pokemonServiceMock.Setup(m => m.Get<TranslatedPokemon>(It.IsAny<string>())).Returns(new TranslatedPokemon("mewtwo", "description", "habitat", true));
-
             using (var mock = AutoMock.GetLoose(builder =>
             {
                 builder.RegisterInstance(pokemonServiceMock.Object).As<IPokemonService>();
