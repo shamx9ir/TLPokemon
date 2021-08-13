@@ -8,6 +8,9 @@ using System.Net.Http;
 
 namespace TLPokemon.Api.Services.Translation.Tests
 {
+    /// <summary>
+    /// Translate returns translated text.
+    /// </summary>
     [TestClass()]
     public class TranslationServiceBaseTests
     {
@@ -42,6 +45,9 @@ namespace TLPokemon.Api.Services.Translation.Tests
             }
         }
 
+        /// <summary>
+        /// Translate returns original text when there is no translation
+        /// </summary>
         [TestMethod()]
         public void Translate_NoTranslation()
         {
@@ -69,6 +75,9 @@ namespace TLPokemon.Api.Services.Translation.Tests
             }
         }
 
+        /// <summary>
+        /// Translate returns original text when there is an exception
+        /// </summary>
         [TestMethod()]
         public void Translate_Exception()
         {

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,15 @@ namespace TLPokemon.Api.Services.Pokemon
     {
         private readonly ILifetimeScope lifetimeScope;
         private readonly INetworkService networkService;
-        private readonly string apiEndpoint = "https://pokeapi.co/api/v2/pokemon-species/";
-        private readonly string descriptionLanguage = "en";
+        private readonly string apiEndpoint;
+        private readonly string descriptionLanguage;
 
-        public PokemonService(ILifetimeScope lifetimeScope, INetworkService networkService)
+        public PokemonService(ILifetimeScope lifetimeScope, INetworkService networkService, IOptions<TLPokemonConfiguration> config)
         {
             this.networkService = networkService;
             this.lifetimeScope = lifetimeScope;
+            apiEndpoint = config.Value.PokemonServiceEndpoint;
+            descriptionLanguage = config.Value.DescriptionLanguage;
         }
 
         public PokemonBase Get<T>(string name) where T : PokemonBase

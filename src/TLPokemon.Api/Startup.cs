@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using TLPokemon.Api.Models;
 using TLPokemon.Api.Services.Network;
 using TLPokemon.Api.Services.Pokemon;
+using TLPokemon.Api.Services.Translation;
 
 namespace TLPokemon.Api
 {
@@ -32,6 +33,7 @@ namespace TLPokemon.Api
             services.AddControllers();
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddHttpClient();
+            services.Configure<TLPokemonConfiguration>(Configuration.GetSection("TLPokemonConfiguration"));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TLPokemon.Api", Version = "v1" });
@@ -43,6 +45,9 @@ namespace TLPokemon.Api
             builder.RegisterType<PokemonService>().As<IPokemonService>();
             builder.RegisterType<NetworkService>().As<INetworkService>();
             builder.RegisterType<Pokemon>();
+            builder.RegisterType<TranslatedPokemon>();
+            builder.RegisterType<YodaTranslationService>();
+            builder.RegisterType<ShakespearTranslationService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
