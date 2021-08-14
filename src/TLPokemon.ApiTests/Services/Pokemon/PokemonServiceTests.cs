@@ -18,7 +18,7 @@ namespace TLPokemon.Api.Services.Pokemon.Tests
     public class PokemonServiceTests
     {
         /// <summary>
-        /// Returns Pokemon object from mocked json data
+        /// Calls Network service and parse data correctly
         /// </summary>
         [TestMethod()]
         public void Get_ReturnsPokemon()
@@ -54,22 +54,45 @@ namespace TLPokemon.Api.Services.Pokemon.Tests
             config.DescriptionLanguage = "en";
             optionsMock.Setup(m => m.Value).Returns(config);
 
+            /* TODO
+            var lifetimeScopeMock = new Mock<ILifetimeScope>();
+            var pokemonMock = new Mock<Models.Pokemon>();
+            lifetimeScopeMock.Setup(m => m.Resolve<Models.Pokemon>(
+                It.IsAny<NamedParameter>(),
+                It.IsAny<NamedParameter>(),
+                It.IsAny<NamedParameter>(),
+                It.IsAny<NamedParameter>())
+            ).Returns(pokemonMock.Object);
+            */
 
             using (var mock = AutoMock.GetLoose(builder =>
             {
                 builder.RegisterInstance(optionsMock.Object);
                 builder.RegisterInstance(networkServiceMock.Object).As<INetworkService>();
+
+                /* TODO
+                builder.RegisterInstance(lifetimeScopeMock.Object).As<ILifetimeScope>();
+                */
             }))
             {
                 var pokemonService = mock.Create<PokemonService>();
                 var result = pokemonService.Get<Models.Pokemon>("mewtwo");
 
+                /* TODO 
+                lifetimeScopeMock.Verify(m => m.Resolve<Models.Pokemon>(
+                    It.Is<NamedParameter>(arg => arg.Value == new NamedParameter("name", "mewtwo").Value),
+                    It.Is<NamedParameter>(arg => arg.Value == new NamedParameter("description", "It was created by\na scientist after\nyears of horrific\fgene splicing and\nDNA engineering\nexperiments.")),
+                    It.Is<NamedParameter>(arg => arg.Value == new NamedParameter("habitat", "rare")),
+                    It.Is<NamedParameter>(arg => arg.Value == new NamedParameter("isLegendary", true))
+                ));
+                */
                 Assert.AreEqual(result.Name, "mewtwo");
                 Assert.AreEqual(result.Description, "It was created by\na scientist after\nyears of horrific\fgene splicing and\nDNA engineering\nexperiments.");
                 Assert.AreEqual(result.Habitat, "rare");
                 Assert.AreEqual(result.isLegendary, true);
 
                 networkServiceMock.Verify(m => m.GetJsonString(It.Is<string>(arg => arg == $"{pokemonServiceEndpoint}mewtwo")));
+
 
             }
 

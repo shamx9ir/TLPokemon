@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac.Extras.Moq;
 
 namespace TLPokemon.Api.Models.Tests
 {
@@ -14,7 +15,14 @@ namespace TLPokemon.Api.Models.Tests
         [TestMethod()]
         public void TranslatedPokemonTest()
         {
-            Assert.Fail();
+            using (var mock = AutoMock.GetLoose(builder =>
+            {
+
+            }))
+            {
+
+            }
+
         }
     }
 }
