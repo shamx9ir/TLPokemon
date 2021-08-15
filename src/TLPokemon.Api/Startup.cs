@@ -47,7 +47,7 @@ namespace TLPokemon.Api
             builder.RegisterType<Pokemon>();
             builder.RegisterType<TranslatedPokemon>();
             builder.RegisterType<YodaTranslationService>();
-            builder.RegisterType<ShakespearTranslationService>();
+            builder.RegisterType<ShakespeareTranslationService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

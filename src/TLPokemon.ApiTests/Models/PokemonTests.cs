@@ -16,14 +16,14 @@ namespace TLPokemon.Api.Models.Tests
         /// Checks that model constructor assigns values correctly
         /// </summary>
         [TestMethod()]
-        public void PokemonTest()
+        public void Pokemon_Constructor()
         {
             var pokemon = new Pokemon("A", "B", "C", true);
 
             Assert.AreEqual("A", pokemon.Name);
             Assert.AreEqual("B", pokemon.Description);
             Assert.AreEqual("C", pokemon.Habitat);
-            Assert.AreEqual(true, pokemon.isLegendary);
+            Assert.AreEqual(true, pokemon.IsLegendary);
         }
     }
 }

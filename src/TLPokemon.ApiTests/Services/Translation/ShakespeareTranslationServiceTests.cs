@@ -20,7 +20,7 @@ namespace TLPokemon.Api.Services.Translation.Tests
     /// When class is instantiated api endpoint is read from config.
     /// </summary>
     [TestClass()]
-    public class ShakespearTranslationServiceTests
+    public class ShakespeareTranslationServiceTests
     {
         /// <summary>
         /// ShakespearTranslationService uses api endpoint from configuration and text parameter
@@ -28,11 +28,11 @@ namespace TLPokemon.Api.Services.Translation.Tests
         [TestMethod()]
         public void ShakespearTranslationServiceTest()
         {
-            var shakespearEndpoint = "https://api.funtranslations.com/translate/shakespeare.json";
+            var shakespeareEndpoint = "https://api.funtranslations.com/translate/shakespeare.json";
             var networkServiceMock = new Mock<INetworkService>();
             var optionsMock = new Mock<IOptions<TLPokemonConfiguration>>();
             var config = new TLPokemonConfiguration();
-            config.ShakespearTranslationServiceEndpoint = shakespearEndpoint;
+            config.ShakespeareTranslationServiceEndpoint = shakespeareEndpoint;
             optionsMock.Setup(m => m.Value).Returns(config);
 
 
@@ -42,11 +42,11 @@ namespace TLPokemon.Api.Services.Translation.Tests
                 builder.RegisterInstance(networkServiceMock.Object);
             }))
             {
-                var shakespearTranslationService = mock.Create<ShakespearTranslationService>();
+                var shakespearTranslationService = mock.Create<ShakespeareTranslationService>();
                 var result = shakespearTranslationService.Translate("test");
 
                 networkServiceMock.Verify(m => m.PostJsonString(
-                    It.Is<string>(arg => arg == shakespearEndpoint),
+                    It.Is<string>(arg => arg == shakespeareEndpoint),
                     It.Is<StringContent>(arg => arg.ReadAsStringAsync().Result == "{\"text\":\"test\"}")));
             }
         }

@@ -10,10 +10,10 @@ namespace TLPokemon.Api.Models
         // TODO decorate with json property name
         public PokemonBase(string name, string description, string habitat, bool isLegendary)
         {
-            this.Name = name;
-            this.OriginalDescription = description;
-            this.Habitat = habitat;
-            this.isLegendary = isLegendary;
+            Name = name;
+            OriginalDescription = description;
+            Habitat = habitat;
+            IsLegendary = isLegendary;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace TLPokemon.Api.Models
         /// <summary>
         /// 
         /// </summary>
-        public bool isLegendary { get; }
+        public bool IsLegendary { get; }
 
         /// <summary>
         /// 

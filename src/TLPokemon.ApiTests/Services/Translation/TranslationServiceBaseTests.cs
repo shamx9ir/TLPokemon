@@ -18,7 +18,7 @@ namespace TLPokemon.Api.Services.Translation.Tests
         public void Translate_ReturnsTranslatedText()
         {
             var expectedString = "Thee did giveth mr. Tim a hearty meal,  but unfortunately what he did doth englut did maketh him kicketh the bucket.";
-            var pokemonApiJson = @"{
+            var apiJson = @"{
                   ""success"": {
                     ""total"": 1
                   },
@@ -30,7 +30,7 @@ namespace TLPokemon.Api.Services.Translation.Tests
                 }";
 
             var networkServiceMock = new Mock<INetworkService>();
-            networkServiceMock.Setup(m => m.PostJsonString(It.IsAny<string>(), It.IsAny<HttpContent>())).ReturnsAsync(pokemonApiJson);
+            networkServiceMock.Setup(m => m.PostJsonString(It.IsAny<string>(), It.IsAny<HttpContent>())).ReturnsAsync(apiJson);
 
             using (var mock = AutoMock.GetLoose(builder =>
             {

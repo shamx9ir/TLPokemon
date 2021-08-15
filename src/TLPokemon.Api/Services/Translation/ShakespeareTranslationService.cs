@@ -8,10 +8,10 @@ using TLPokemon.Api.Services.Network;
 
 namespace TLPokemon.Api.Services.Translation
 {
-    public class ShakespearTranslationService : TranslationServiceBase
+    public class ShakespeareTranslationService : TranslationServiceBase
     {
-        public ShakespearTranslationService(INetworkService networkService, IOptions<TLPokemonConfiguration> config)
-            : base(config.Value.ShakespearTranslationServiceEndpoint, networkService)
+        public ShakespeareTranslationService(INetworkService networkService, IOptions<TLPokemonConfiguration> config)
+            : base(config.Value.ShakespeareTranslationServiceEndpoint, networkService)
         {
 
         }

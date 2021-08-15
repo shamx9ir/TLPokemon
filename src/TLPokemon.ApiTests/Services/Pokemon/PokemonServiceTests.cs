@@ -89,7 +89,7 @@ namespace TLPokemon.Api.Services.Pokemon.Tests
                 Assert.AreEqual(result.Name, "mewtwo");
                 Assert.AreEqual(result.Description, "It was created by\na scientist after\nyears of horrific\fgene splicing and\nDNA engineering\nexperiments.");
                 Assert.AreEqual(result.Habitat, "rare");
-                Assert.AreEqual(result.isLegendary, true);
+                Assert.AreEqual(result.IsLegendary, true);
 
                 networkServiceMock.Verify(m => m.GetJsonString(It.Is<string>(arg => arg == $"{pokemonServiceEndpoint}mewtwo")));
 

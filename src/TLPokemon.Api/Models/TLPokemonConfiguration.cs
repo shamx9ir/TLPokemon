@@ -11,7 +11,7 @@ namespace TLPokemon.Api.Models
 
         public string YodaTranslationServiceEndpoint { get; set; }
 
-        public string ShakespearTranslationServiceEndpoint { get; set; }
+        public string ShakespeareTranslationServiceEndpoint { get; set; }
 
         public string DescriptionLanguage { get; set; }
     }

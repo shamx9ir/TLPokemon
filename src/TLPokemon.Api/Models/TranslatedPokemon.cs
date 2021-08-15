@@ -17,12 +17,12 @@ namespace TLPokemon.Api.Models
             if (isYodaTranslation)
                 translationService = lifetimeScope.Resolve<YodaTranslationService>();
             else
-                translationService = lifetimeScope.Resolve<ShakespearTranslationService>();
+                translationService = lifetimeScope.Resolve<ShakespeareTranslationService>();
         }
 
 
         public override string Description => translationService.Translate(OriginalDescription);
 
-        private bool isYodaTranslation => Habitat == "cave" || isLegendary;
+        private bool isYodaTranslation => Habitat == "cave" || IsLegendary;
     }
 }
